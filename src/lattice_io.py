@@ -40,6 +40,8 @@ def read_qary_lattice(input_file=None):
     # Use column vectors.
     return np.ascontiguousarray(np.array(data, dtype=np.int64).transpose())
 
+def custom_format(v):
+    return f"{str(v):>6s}"
 
 def write_lattice(basis, output_file=None):
     """
@@ -52,9 +54,9 @@ def write_lattice(basis, output_file=None):
     if output_file is None:
         print('[', end='')
         for (i, v) in enumerate(basis):
-            print('[' + ' '.join(map(str, v)), end=']\n' if i < len(basis) - 1 else ']]\n')
+            print('[' + ' '.join(map(custom_format, v)), end=']\n' if i < len(basis) - 1 else ']]\n')
     else:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write('[')
             for (i, v) in enumerate(basis):
-                f.write('[' + ' '.join(map(str, v)) + (']\n' if i < len(basis) - 1 else ']]\n'))
+                f.write('[' + ' '.join(map(custom_format, v)) + (']\n' if i < len(basis) - 1 else ']]\n'))
