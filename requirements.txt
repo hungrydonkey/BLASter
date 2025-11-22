@@ -1,0 +1,5 @@
+Cython
+cysignals
+numpy
+matplotlib
+setuptools
