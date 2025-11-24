@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 VENV_DIR=".env"
 # zsh/fish 
-python3 -m venv .env
 
 if [ ! -d "$VENV_DIR" ]; then
   echo "creat $VENV_DIR..."
