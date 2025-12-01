@@ -50,7 +50,7 @@ def write_lattice(basis, output_file=None):
     :param basis: the matrix to output
     """
     basis = basis.transpose()
-
+    print("")
     if output_file is None:
         print('[', end='')
         for (i, v) in enumerate(basis):
