@@ -109,6 +109,8 @@ def __main__():
     # Re 2): The program cannot use more cores in lattice reduction
     # than the number of blocks, so do not spawn more than this number.
     args.cores = max(1, min(args.cores, ceil(n / args.lll_size), cpu_count() // 2))
+    if args.verbose:
+        print(f'Using {args.cores} core(s) for lattice reduction', file=stderr)
 
     # Run BLASter lattice reduction on basis B
     U, B_red, tprof = reduce(B, **vars(args))
