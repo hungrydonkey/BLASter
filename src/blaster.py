@@ -156,7 +156,8 @@ def bkz_reduce(B, U, U_seysen, lll_size, delta, depth,
 
 
 def reduce(
-        B, lll_size: int = 64, delta: float = 0.99, cores: int = 1, debug: bool = False,
+        B, lll_size: int = 64, delta: float = 0.99, cores: int = 1, debug: bool = False, 
+        bkz_depth: int = 4,
         verbose: bool = False, logfile: str = None, anim: str = None, depth: int = 0,
         use_seysen: bool = False,
         **kwds
@@ -242,7 +243,7 @@ def reduce(
             # However, it is actually better to preprocess the basis with 4-deep-LLL instead of LLL,
             # before calling the SVP oracle.
             for beta_ in betas:
-                bkz_reduce(B, U, U_seysen, lll_size, delta, 4, beta_,
+                bkz_reduce(B, U, U_seysen, lll_size, delta, bkz_depth, beta_,
                            bkz_tours if beta_ == beta else 1, bkz_size,
                            tprof, tracers, debug, use_seysen)
     except KeyboardInterrupt:
