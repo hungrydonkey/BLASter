@@ -41,6 +41,9 @@ def __main__():
     parser.add_argument(
             '--anim', '-a', type=str,
             help='Output a gif-file animating the basis profile during lattice reduction')
+    parser.add_argument(
+            '--fp', '-f', type=bool, default=False,
+            help='Output fplll style matrix (without aligned columns) if set to True')
 
     # LLL parameters
     parser.add_argument(
@@ -122,9 +125,15 @@ def __main__():
     if print_mat and args.output == args.input:
         print_mat = input('WARNING: input & output files are same!\nContinue? (y/n) ') == 'y'
     if print_mat:
-        write_lattice(B_red, args.output)
+        if args.fp:
+            write_lattice(B_red, args.output, verbose=False)
+        else:
+            write_lattice(B_red, args.output)
     elif not args.quiet:
-        write_lattice(B_red)
+        if args.fp:
+            write_lattice(B_red, verbose=False)
+        else:
+            write_lattice(B_red)
 
     # Print time consumption
     if args.verbose:
