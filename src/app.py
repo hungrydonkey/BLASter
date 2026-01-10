@@ -42,7 +42,7 @@ def __main__():
             '--anim', '-a', type=str,
             help='Output a gif-file animating the basis profile during lattice reduction')
     parser.add_argument(
-            '--fp', '-f', type=bool, default=False,
+            '--fp', '-f', action='store_true',
             help='Output fplll style matrix (without aligned columns) if set to True')
 
     # LLL parameters
