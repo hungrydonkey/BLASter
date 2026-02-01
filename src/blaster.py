@@ -232,7 +232,7 @@ def reduce(
             bkz_size = kwds.get("bkz_size") or lll_size
             bkz_prog = kwds.get("bkz_prog") or beta
             if verbose:
-                print(f"Running BKZ-{beta} with {bkz_tours} tours, bkz_size={bkz_size}, bkz_prog={bkz_prog}", file=stderr)
+                print(f"Running BKZ-{beta} with {bkz_tours} tours, bkz_size={bkz_size}, bkz_prog={bkz_prog}, {cores} cores", file=stderr)
 
             # Progressive-BKZ: start running BKZ-beta' for some `beta' >= 40`,
             # then increase the blocksize beta' by `bkz_prog` and run BKZ-beta' again,
