@@ -42,6 +42,29 @@ Optional:
 2. (optional) Run `make venv` to create a local virtual environment and install the required python3 modules.
 3. Run `make` to compile all the Cython files in `core/`.
 
+## Syncing your fork with upstream
+
+If you forked this repository and want to merge commits from the main repository into your fork:
+
+```bash
+# once: add the main repository as "upstream"
+git remote add upstream https://github.com/hungrydonkey/BLASter.git
+
+# fetch latest commits from upstream
+git fetch upstream
+
+# switch to your main branch
+git checkout main
+
+# merge upstream/main into your fork's main
+git merge upstream/main
+
+# push merged result to your fork
+git push origin main
+```
+
+If your default branch is not `main`, replace `main` above with your branch name.
+
 ## Debugging
 
 - Debug the C++/Cython code with the `libasan` and `libubsan` sanitizers by running `make cython-gdb`.
