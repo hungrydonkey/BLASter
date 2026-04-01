@@ -11,9 +11,9 @@ from math import log2, ceil
 import numpy as np
 
 # Local imports
-from lattice_io import read_qary_lattice, write_lattice
-from blaster import reduce
-from stats import gaussian_heuristic, rhf, slope, get_profile
+from blaster.lattice_io import read_qary_lattice, write_lattice
+from blaster.blaster import reduce
+from blaster.stats import gaussian_heuristic, rhf, slope, get_profile
 
 
 def __main__():
@@ -31,7 +31,7 @@ def __main__():
     # I/O arguments
     parser.add_argument('--input', '-i', type=str, help='Input file (default=stdin)')
     parser.add_argument('--output', '-o', type=str, help='Output file (default=stdout)')
-    parser.add_argument('--logfile', '-l', type=str, default=None, help='Logging file')
+    parser.add_argument('--logfile', '-l', type=str, help='Logging file')
     parser.add_argument(
             '--profile', '-p', action='store_true', dest='debug',
             help='Give information on the profile of the output basis')
@@ -73,7 +73,7 @@ def __main__():
             help='Size of blocks on which to call BKZ locally & in parallel.')
     parser.add_argument(
             '--bkz-prog', '-P', type=int,
-            help='Progressive blocksize increment for BKZ.')
+            help='Progressive block size increment for BKZ.')
     parser.add_argument(
             '--bkz_depth', '-D', type=int, default=4,
             help='Depth for deep-LLL in the preprocessing stage')
@@ -94,16 +94,16 @@ def __main__():
         # See: https://github.com/malb/lattice-estimator/blob/main/estimator/reduction.py
         # TODO: adjust slope to the prediction for deep-LLL and BKZ.
         log_slope = log2(1.02190)  # Slope of graph of basis profile, log2(||b_i*||^2).
-        log_det = sum(get_profile(B))
+        prof = get_profile(B)
+        log_det = sum(prof)
         norm_b1 = 2.0**(log_slope * (n-1) + log_det / n)
 
         comparison = ""
         if np.count_nonzero(B[:, 0]) == 1:
             q = sum(B[:, 0])
-            cmp = "<" if norm_b1 < q else ">="
-            comparison = f'{cmp} {int(q):d} '
+            comparison = f'{"<" if norm_b1 < q else ">="} {int(q):d} '
         print(f'E[∥b₁∥] ~ {norm_b1:.2f} {comparison}'
-              f'(GH: λ₁ ~ {gaussian_heuristic(B):.2f})',
+              f'(GH: λ₁ ~ {gaussian_heuristic(prof):.2f})',
               file=stderr)
 
     # Multithreading is used in two places:
