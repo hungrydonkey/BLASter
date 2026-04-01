@@ -246,7 +246,7 @@ def reduce(
             bkz_size = kwds.get("bkz_size") or lll_size
             bkz_prog = kwds.get("bkz_prog") or beta  # only use block size `beta` if not given.
             if verbose:
-                print(f"Running BKZ-{beta} with {bkz_tours} tours, bkz_size={bkz_size}, bkz_prog={bkz_prog}, {cores} cores", file=stderr)
+                print(f"Running BKZ-{beta} with {bkz_tours} tours, bkz_size={bkz_size}, bkz_prog={bkz_prog}, depth={bkz_depth}, {cores} cores", file=stderr)
 
             # Progressive-BKZ: start running BKZ-beta' for some `beta' >= 40`,
             # then increase the block size beta' by `bkz_prog` and run BKZ-beta' again,
@@ -255,7 +255,7 @@ def reduce(
 
             for beta_ in betas:
                 tours = bkz_tours if beta_ == beta else 1
-                bkz_reduce(B, U, U_seysen, lll_size, delta, depth, beta_, tours, bkz_size,
+                bkz_reduce(B, U, U_seysen, lll_size, delta, bkz_depth, beta_, tours, bkz_size,
                            tprof, tracers, debug, use_seysen)
     except KeyboardInterrupt:
         pass  # When interrupted, give the partially reduced basis.
