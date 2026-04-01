@@ -238,9 +238,9 @@ def reduce(
 
     try:
         # LLL reduction
-        lll_reduce(B, U, U_seysen, lll_size, delta, depth, tprof, tracers, debug, use_seysen)
-
-        if beta:
+        if not beta or beta < 40:
+            lll_reduce(B, U, U_seysen, lll_size, delta, depth, tprof, tracers, debug, use_seysen)
+        else:
             # Parse BKZ parameters:
             bkz_tours = kwds.get("bkz_tours") or 1
             bkz_size = kwds.get("bkz_size") or lll_size
