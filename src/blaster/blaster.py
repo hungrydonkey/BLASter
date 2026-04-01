@@ -157,7 +157,7 @@ def bkz_reduce(B, U, U_seysen, lll_size, delta, depth,
 
 def reduce(
         B, lll_size: int = 64, delta: float = 0.99, cores: int = 1, debug: bool = False, 
-        # bkz_depth: int = 4,
+        bkz_depth: int = 4,
         verbose: bool = False, logfile: str = None, anim: str = None, depth: int = 0,
         use_seysen: bool = False, **kwds
 ):

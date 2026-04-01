@@ -74,9 +74,9 @@ def __main__():
     parser.add_argument(
             '--bkz-prog', '-P', type=int,
             help='Progressive block size increment for BKZ.')
-#     parser.add_argument(
-#             '--bkz_depth', '-D', type=int, default=4,
-#             help='Depth for deep-LLL in the preprocessing stage')
+    parser.add_argument(
+            '--bkz_depth', '-D', type=int, default=4,
+            help='Depth for deep-LLL in the preprocessing stage')
     # Parse the command line arguments
     args = parser.parse_args()
 
