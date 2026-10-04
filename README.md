@@ -7,6 +7,14 @@ BLASter is a proof of concept of an LLL-like lattice reduction algorithm that us
 - Seysen's reduction instead of size reduction, and
 - a linear algebra library.
 
+This work has been published [here](https://doi.org/10.1007/978-981-95-5099-9_3),
+and is available on [ePrint](https://eprint.iacr.org/2025/774).
+If you are using this software, please cite us in the following way:
+
+> Léo Ducas, Ludo N. Pulles, Marc Stevens. *Towards a Modern LLL Implementation*.
+> In: ASIACRYPT 2025, Part III. LNCS, vol 16247. Springer, December 2025.
+> DOI: [10.1007/978-981-95-5099-9_3](https://doi.org/10.1007/978-981-95-5099-9_3)
+
 ## Disclaimer
 
 The goal of this software is to showcase speed ups that are possible in lattice reduction software.
@@ -40,7 +48,7 @@ Optional:
 
 One can either build the software locally as follows:
 
-1. (optional) Run `make eigen3` to install the Eigen (version 3.4.0) in a subdirectory.
+1. (optional) Run `make eigen3` to install the Eigen3 library (version 5.0.0) in a subdirectory.
 2. (optional) Run `make venv` to create a local virtual environment and install the required python3 modules.
 3. Run `make` to compile all the Cython files in `core/`.
 

@@ -58,7 +58,7 @@ def __main__():
 
     # Parameters specific to deep-LLL:
     parser.add_argument(
-            '--depth', '-d', type=int, default=0,
+            '--depth', '-d', type=int,
             help='Maximum allowed depth for "deep insertions" in deep-LLL. 0 if not desired.')
 
     # Parameters specific to BKZ:
@@ -66,10 +66,10 @@ def __main__():
             '--beta', '-b', type=int,
             help='Blocksize used within BKZ. 0 if not desired.')
     parser.add_argument(
-            '--bkz-tours', '-t', type=int, default=8,
+            '--bkz-tours', '-t', type=int,
             help='Number of BKZ-tours to perform.')
     parser.add_argument(
-            '--bkz-size', '-S', type=int, default=64,
+            '--bkz-size', '-S', type=int,
             help='Size of blocks on which to call BKZ locally & in parallel.')
     parser.add_argument(
             '--bkz-prog', '-P', type=int,
@@ -83,7 +83,6 @@ def __main__():
     # Perform sanity checks
     assert 0.25 < args.delta and args.delta < 1.0, 'Invalid value for delta!'
     assert args.lll_size >= 2, 'LLL block size must be at least 2!'
-    assert not args.depth or not args.beta, 'Cannot run combination of deep-LLL and BKZ!'
 
     # Read the basis from input (file)
     B = read_qary_lattice(args.input)
